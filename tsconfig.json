@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "types": ["node", "webpack"],
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "outDir": "./dist/",
+    "target": "ES6",
+    "sourceMap": false,
+    "noImplicitAny": true,
+    "strict": false
+  },
+  "include": ["types.d.ts", "webpack.config.js", "src/**/*"],
+  "exclude": ["node_modules", "**/*.spec.ts"]
+}
