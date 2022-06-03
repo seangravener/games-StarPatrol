@@ -1,37 +1,37 @@
-import { Scene } from 'phaser'
-import { Redhat } from '../objects/redhat'
+import { Scene } from "phaser"
+import { Hero } from "../objects/Hero"
 
-import redHatHero from '../../static/images/redhat.png'
-import redParticle from '../../static/images/red.png'
+import redHatHero from '../../static/images/redHatHero.png'
+import lightParticle from '../../static/images/lightParticle.png'
 
 export class MainScene extends Scene {
-  private Hero: Redhat
+  private hero: Hero
 
   constructor() {
-    super({ key: 'MainScene' })
+    super({ key: "MainScene" })
   }
 
   preload(): void {
-    this.load.image('redhat', redHatHero)
-    this.load.image('redParticle', redParticle)
+    this.load.image("redHatHero", redHatHero)
+    this.load.image("lightParticle", lightParticle)
   }
 
   create(): void {
-    const particles = this.add.particles('redParticle')
+    const particles = this.add.particles("lightParticle")
 
     const emitter = particles.createEmitter({
       speed: 100,
       scale: { start: 0.5, end: 0 },
-      blendMode: 'ADD',
+      blendMode: "ADD",
     })
 
-    this.Hero = new Redhat({
+    this.hero = new Hero({
       scene: this,
       x: 400,
       y: 300,
-      texture: 'redhat',
+      texture: "redHatHero",
     })
 
-    emitter.startFollow(this.Hero)
+    emitter.startFollow(this.hero)
   }
 }

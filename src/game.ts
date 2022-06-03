@@ -1,15 +1,12 @@
-import { Types, Game } from 'phaser'
-import { GameConfig } from './config'
+import { Types, Game } from "phaser"
+import { GameConfig } from "./config"
 
 export class GameMain extends Game {
-  constructor(config: Types.Core.GameConfig) {
-    super(config)
+  constructor(c: Types.Core.GameConfig) {
+    super(c)
   }
 }
 
-window.addEventListener('load', () => {
-  console.log('game.ts or not')
+window.addEventListener("load", () => {
   new Game(GameConfig)
 })
-
-console.log('game.ts!!!!!!!!!!!!!!!!!!!')
