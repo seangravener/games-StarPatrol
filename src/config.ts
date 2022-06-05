@@ -1,20 +1,20 @@
-import { Types, AUTO } from 'phaser'
-import { MainScene } from './scenes/MainScene'
+import { Types, AUTO } from "phaser"
+import { MainScene, BootScene } from "./scenes"
 
 export const GameConfig: Types.Core.GameConfig = {
-  title: 'Star Patrol',
-  url: '',
-  version: '0.1',
+  title: "Star Patrol",
+  url: "",
+  version: "0.1",
   width: 800,
   height: 600,
   backgroundColor: 0x3a404d,
   type: AUTO,
-  parent: 'game',
+  parent: "game",
   physics: {
-    default: 'arcade',
+    default: "arcade",
     arcade: {
       gravity: { y: 200 },
     },
   },
-  scene: [MainScene],
+  scene: [BootScene, MainScene],
 }

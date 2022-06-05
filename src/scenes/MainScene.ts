@@ -1,8 +1,6 @@
 import { Scene } from "phaser"
 import { Hero } from "../objects/Hero"
-
-import redHatHero from '../../static/images/redHatHero.png'
-import lightParticle from '../../static/images/lightParticle.png'
+import { lightParticle, redHatHero } from "../../static/images"
 
 export class MainScene extends Scene {
   private hero: Hero
