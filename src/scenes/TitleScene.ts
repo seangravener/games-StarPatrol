@@ -5,6 +5,15 @@ import GameService from "../services/game.service"
 const SCALE = 2
 export type TileSpriteArgs = [number, number, number, number, string]
 
+const getStarshipFrames = (scene: Scene) =>
+  scene.anims.generateFrameNames("starship", {
+    start: 0,
+    end: 3,
+    zeroPad: 2,
+    prefix: "PlayerRed_Frame_",
+    suffix: ".png",
+  })
+
 export class TitleScene extends Scene {
   game: Game
   canvas: HTMLCanvasElement
@@ -28,19 +37,25 @@ export class TitleScene extends Scene {
 
     this.anims.create({
       key: "idle",
-      frames: this.anims.generateFrameNames("starship", {
-        start: 0,
-        end: 2,
-        zeroPad: 2,
-        prefix: "PlayerBlue_Frame_",
-        suffix: ".png",
-      }),
+      frames: getStarshipFrames(this),
       frameRate: 8,
       repeat: 2,
     })
 
-    const starship = this.add.sprite(100, 300, "starship")
-    starship.play("idle")
+    // const starship = this.add.sprite(100, 300, "starship")
+    // this.add.image(100, 100, "startship");
+
+    for (const frame of ["01", "02", "03"]) {
+      this.make.image({
+        x: 200 * parseInt(frame),
+        y: 100 * parseInt(frame),
+        key: "starship",
+        frame: `PlayerRed_Frame_${frame}.png`,
+        add: true,
+      }).setOrigin(0)
+    }
+
+    // starship.play("idle")
   }
 
   update() {
