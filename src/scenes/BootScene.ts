@@ -26,7 +26,7 @@ export class BootScene extends Scene {
     const height = this.cameras.main.height
     const loadingText = this.make.text({
       x: width / 2,
-      y: height / 2 - 150,
+      y: height / 2 - 50,
       text: "Loading...",
       style: {
         font: "20px monospace",
@@ -37,7 +37,7 @@ export class BootScene extends Scene {
 
     var percentText = this.make.text({
       x: width / 2,
-      y: height / 2 - 15,
+      y: height / 2 - 5,
       text: "0%",
       style: {
         font: "18px monospace",
