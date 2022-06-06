@@ -1,5 +1,5 @@
 import { Scene } from "phaser"
-import { lightParticle, redHatHero } from "../../static/images"
+import { BG1, BG2, lightParticle, redHatHero } from "../../static/images"
 
 // load assets
 // display text or graphic loading animation
@@ -14,8 +14,10 @@ export class BootScene extends Scene {
   }
 
   preload() {
-    this.load.image("bg:1", lightParticle)
+    this.load.image("bg:1", BG1)
+    this.load.image("bg:2", BG2)
     this.load.image("player", redHatHero)
+    this.load.image("particle", lightParticle)
 
     const progressBar = this.add.graphics()
     const progressBox = this.add.graphics()
@@ -56,16 +58,17 @@ export class BootScene extends Scene {
     })
 
     this.load.on("complete", () => {
-      // progressBar.destroy()
-      // progressBox.destroy()
-      // loadingText.destroy()
-      // percentText.destroy()
       // assetText.destroy();
 
       this.time.addEvent({
         delay: 3000,
         loop: false,
         callback: () => {
+          progressBar.destroy()
+          progressBox.destroy()
+          loadingText.destroy()
+          percentText.destroy()
+
           this.scene.start("TitleScene")
         },
       })

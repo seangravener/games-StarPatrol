@@ -1,5 +1,5 @@
 import { Scene } from "phaser"
-import { lightParticle, redHatHero } from "../../static/images"
+import { lightParticle, redHatHero, BG1, BG2 } from "../../static/images"
 
 export class TitleScene extends Scene {
   constructor() {
@@ -7,16 +7,19 @@ export class TitleScene extends Scene {
   }
 
   preload() {
-    this.load.image("bg:1", lightParticle)
-    this.load.image("player", redHatHero)
+    // this.load.image("bg:1", BG1)
+    // this.load.image("bg:2", BG2)
+    // this.load.image("player", redHatHero)
   }
 
   create() {
     // create bg sprite
-    // this.add.sprite(20, 20, "bg:1")
-    // this.add.sprite(200, 200, "player")
+    this.add.sprite(420, 120, "bg:1")
+    this.add.sprite(20, 60, "bg:2")
+    this.add.sprite(400, 500, "player")
+    this.add.sprite(400, 500, "particle")
 
-    const loadingText = this.make
+    this.make
       .text({
         x: this.cameras.main.width / 2,
         y: this.cameras.main.height / 2 - 50,
