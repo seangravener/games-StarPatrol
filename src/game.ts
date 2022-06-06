@@ -1,12 +1,16 @@
 import { Types, Game } from "phaser"
 import { GameConfig } from "./config"
 
-export class GameMain extends Game {
-  constructor(c: Types.Core.GameConfig) {
-    super(c)
+export class StarPortal extends Game {
+  constructor(config: Types.Core.GameConfig) {
+    super(config)
+  }
+
+  static load() {
+    return new Game(GameConfig)
   }
 }
 
 window.addEventListener("load", () => {
-  new Game(GameConfig)
+  StarPortal.load()
 })

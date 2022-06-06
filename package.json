@@ -1,7 +1,7 @@
 {
-  "name": "star-patrol",
+  "name": "star-portal",
   "version": "1.0.0",
-  "description": "Star Patrol Shooter Gamme (Phaser3 and TypeScript)",
+  "description": "Star Portal Shooter Gamme (Phaser3 and TypeScript)",
   "keywords": [],
   "devDependencies": {
     "@babel/core": "^7.18.2",
