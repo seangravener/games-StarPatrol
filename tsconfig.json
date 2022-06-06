@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "types": ["node", "webpack"],
+    "types": ["node", "webpack", "jest"],
     "module": "commonjs",
     "moduleResolution": "node",
     "esModuleInterop": true,
