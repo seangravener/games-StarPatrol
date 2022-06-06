@@ -1,5 +1,14 @@
 import { Scene } from "phaser"
-import { BG1, BG2, lightParticle, redHatHero } from "../../static/images"
+import { BGBottom, BGTop, lightParticle } from "../../static/images"
+
+import {
+  starshipMap,
+  starship,
+  phaser,
+  phaserMap,
+  platform,
+  platformMap,
+} from "../../static/sprites"
 
 // load assets
 // display text or graphic loading animation
@@ -14,10 +23,12 @@ export class BootScene extends Scene {
   }
 
   preload() {
-    this.load.image("bg:1", BG1)
-    this.load.image("bg:2", BG2)
-    this.load.image("player", redHatHero)
-    this.load.image("particle", lightParticle)
+    this.load.image("bg:bottom", BGBottom)
+    this.load.image("bg:top", BGTop)
+
+    this.load.atlas("starship", starship, starshipMap)
+    this.load.atlas("platform", platform, platformMap)
+    this.load.atlas("phaser", phaser, phaserMap)
 
     const progressBar = this.add.graphics()
     const progressBox = this.add.graphics()
@@ -61,7 +72,7 @@ export class BootScene extends Scene {
       // assetText.destroy();
 
       this.time.addEvent({
-        delay: 3000,
+        delay: 1000,
         loop: false,
         callback: () => {
           progressBar.destroy()
@@ -79,5 +90,13 @@ export class BootScene extends Scene {
     // create bg sprite
     // this.add.sprite(20, 20, "bg:1")
     // this.add.sprite(200, 200, "player")
+
+    this.anims.generateFrameNames("PlayerGreen_Frame_01.png", {
+      start: 0,
+      end: 5,
+      zeroPad: 3,
+      prefix: "string prefix",
+      suffix: ".png",
+    })
   }
 }

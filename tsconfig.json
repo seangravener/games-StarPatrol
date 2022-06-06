@@ -6,9 +6,10 @@
     "esModuleInterop": true,
     "outDir": "./dist/",
     "target": "ES6",
-    "sourceMap": false,
+    "sourceMap": true,
     "noImplicitAny": true,
-    "strict": false
+    "strict": false,
+    "resolveJsonModule": true
   },
   "include": ["types.d.ts", "webpack.config.js", "src/**/*"],
   "exclude": ["node_modules", "**/*.spec.ts"]
