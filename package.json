@@ -3,6 +3,16 @@
   "version": "1.0.0",
   "description": "Star Portal Shooter Gamme (Phaser3 and TypeScript)",
   "keywords": [],
+  "scripts": {
+    "clean": "rm dist/bundle.js",
+    "start": "webpack serve --mode development",
+    "build": "webpack --mode development",
+    "build-prod": "webpack --mode production",
+    "test": "jest"
+  },
+  "dependencies": {
+    "phaser": "3.55.2"
+  },
   "devDependencies": {
     "@babel/core": "^7.18.2",
     "@babel/preset-env": "^7.18.2",
@@ -12,12 +22,17 @@
     "copy-webpack-plugin": "^11.0.0",
     "css-loader": "^6.7.1",
     "html-webpack-plugin": "^5.5.0",
+    "inversify": "^6.0.1",
     "jest": "^28.1.0",
+    "jest-canvas-mock": "^2.4.0",
+    "jest-environment-jsdom": "^28.1.1",
     "node-sass": "^7.0.1",
     "prettier": "^2.6.2",
     "raw-loader": "^4.0.2",
+    "reflect-metadata": "^0.1.13",
     "sass-loader": "^13.0.0",
     "style-loader": "^3.3.1",
+    "ts-jest": "^28.0.4",
     "ts-loader": "^9.3.0",
     "typescript": "^4.3.5",
     "url-loader": "^4.1.1",
@@ -25,16 +40,6 @@
     "webpack-bundle-analyzer": "^4.5.0",
     "webpack-cli": "^4.9.2",
     "webpack-dev-server": "^4.9.1"
-  },
-  "dependencies": {
-    "phaser": "3.55.2"
-  },
-  "scripts": {
-    "clean": "rm dist/bundle.js",
-    "start": "webpack serve --mode development",
-    "build": "webpack --mode development",
-    "build-prod": "webpack --mode production",
-    "test": "jest"
   },
   "repository": {
     "type": "git",

@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
-    "types": ["node", "webpack", "jest"],
+    "types": ["node", "webpack", "jest", "reflect-metadata"],
+    "lib": ["ES6"],
     "module": "commonjs",
     "moduleResolution": "node",
     "esModuleInterop": true,
@@ -9,7 +10,9 @@
     "sourceMap": true,
     "noImplicitAny": true,
     "strict": false,
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true
   },
   "include": ["types.d.ts", "webpack.config.js", "src/**/*"],
   "exclude": ["node_modules", "**/*.spec.ts"]
