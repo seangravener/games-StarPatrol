@@ -1,6 +1,9 @@
 # Static sources
 static-src
 
+# Use yarn instead
+package-lock.json
+
 node_modules/
 .npm
 .env
