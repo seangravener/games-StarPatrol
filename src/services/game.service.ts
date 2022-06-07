@@ -1,17 +1,14 @@
+import { Container, Service } from "typedi"
 import { Game } from "phaser"
+import ConfigService from "./config.service"
 
-let _instance: Game = undefined
-
-export default class GameService {
-  get game(): Game {
-    return _instance
-  }
-
-  constructor(instance: Game) {
-    _instance = instance
+@Service()
+export default class GameService extends Game {
+  constructor(public service: ConfigService) {
+    super(service.config)
   }
 
   static load() {
-    return _instance
+    return Container.get(GameService)
   }
 }

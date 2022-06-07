@@ -1,5 +1,8 @@
 import type { Game, Input, Types } from "phaser"
 import { Scene, GameObjects } from "phaser"
+import { Service } from "typedi"
+import ConfigService from "../services/config.service"
+// import ConfigService from "../services/config.service"
 import GameService from "../services/game.service"
 
 const SCALE = 2
@@ -14,6 +17,7 @@ const getStarshipFrames = (scene: Scene) =>
     suffix: ".png",
   })
 
+@Service()
 export class TitleScene extends Scene {
   game: Game
   canvas: HTMLCanvasElement
@@ -21,9 +25,12 @@ export class TitleScene extends Scene {
   bgBottom: GameObjects.TileSprite
   cursorKeys: Types.Input.Keyboard.CursorKeys
 
-  constructor() {
+  constructor(public gameService: GameService, public configService: ConfigService) {
     super({ key: "TitleScene" })
     this.game = GameService.load()
+
+    // console.log(config)
+    console.log(GameService.load(), ConfigService.load().config);
   }
 
   init() {
@@ -46,13 +53,15 @@ export class TitleScene extends Scene {
     // this.add.image(100, 100, "startship");
 
     for (const frame of ["01", "02", "03"]) {
-      this.make.image({
-        x: 200 * parseInt(frame),
-        y: 100 * parseInt(frame),
-        key: "starship",
-        frame: `PlayerRed_Frame_${frame}.png`,
-        add: true,
-      }).setOrigin(0)
+      this.make
+        .image({
+          x: 200 * parseInt(frame),
+          y: 100 * parseInt(frame),
+          key: "starship",
+          frame: `PlayerRed_Frame_${frame}.png`,
+          add: true,
+        })
+        .setOrigin(0)
     }
 
     // starship.play("idle")
