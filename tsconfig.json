@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "types": ["node", "webpack", "jest", "reflect-metadata"],
-    "lib": ["ES6"],
+    "lib": ["ES6", "DOM"],
     "module": "commonjs",
     "moduleResolution": "node",
     "esModuleInterop": true,
