@@ -1,3 +1,6 @@
+import "reflect-metadata"
+import { Container, Service } from "typedi"
+
 import { Types, Game } from "phaser"
 import { GameConfig } from "./config"
 
@@ -18,3 +21,18 @@ export class StarPortal extends Game {
 window.addEventListener("load", () => {
   StarPortal.load()
 })
+
+@Service()
+class ExampleInjectedService {
+  printMessage() {
+    console.log("hello world!")
+  }
+}
+
+@Service()
+class ExampleService {
+  constructor(public injectedServce: ExampleInjectedService) {}
+}
+
+const serviceInstance = Container.get(ExampleService)
+serviceInstance.injectedServce.printMessage()

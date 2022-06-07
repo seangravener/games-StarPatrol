@@ -22,3 +22,4 @@ Assets are bundeled via webpack's asset/resource loader. Static images can then 
 - StyleLint: Linting for Styles.
 - Prettier: Formatter for Scripts and Styles.
 - EditorConfig: Formatter for files in general.
+- TypeDI: Dependency injection lib
