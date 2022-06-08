@@ -6,7 +6,9 @@ import "../styles/style.css"
 
 @Service()
 export class StarPortal {
-  constructor(public service: GameService) {}
+  constructor(public game: GameService) {
+    console.log('DI??', this.game)
+  }
 
   static load() {
     return Container.get(StarPortal)
@@ -14,5 +16,7 @@ export class StarPortal {
 }
 
 window.addEventListener("load", () => {
-  StarPortal.load()
+  const starportal = StarPortal.load()
+  console.log(starportal.game instanceof GameService);
+  console.log(starportal);
 })

@@ -1,9 +1,7 @@
-import type { Game, Input, Types } from "phaser"
+import type { Types } from "phaser"
 import { Scene, GameObjects } from "phaser"
-import { Service } from "typedi"
-import ConfigService from "../services/config.service"
-// import ConfigService from "../services/config.service"
-import GameService from "../services/game.service"
+import { Inject, Service } from "typedi"
+import { SampleService } from "../services/game.service"
 
 const SCALE = 2
 export type TileSpriteArgs = [number, number, number, number, string]
@@ -18,19 +16,32 @@ const getStarshipFrames = (scene: Scene) =>
   })
 
 @Service()
+export class DemoClass {
+  // @Inject()
+  // public service: SampleService
+  constructor() {}
+
+  hello() {
+    console.log("hello from demo class")
+  }
+}
+
+// @Service()
 export class TitleScene extends Scene {
-  game: Game
   canvas: HTMLCanvasElement
   bgTop: GameObjects.TileSprite
   bgBottom: GameObjects.TileSprite
   cursorKeys: Types.Input.Keyboard.CursorKeys
 
-  constructor(public gameService: GameService, public configService: ConfigService) {
-    super({ key: "TitleScene" })
-    this.game = GameService.load()
+  // @Inject()
+  // public service: SampleService
 
-    // console.log(config)
-    console.log(GameService.load(), ConfigService.load().config);
+  constructor() {
+    super({ key: "TitleScene" })
+
+    // console.log(this.service)
+    // console.log(this.service instanceof SampleService)
+    // console.log(this.configSer)
   }
 
   init() {

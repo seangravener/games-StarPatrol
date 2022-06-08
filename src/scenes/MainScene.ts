@@ -1,12 +1,29 @@
+import { Inject, Service } from "typedi"
 import { Scene } from "phaser"
 import { Hero } from "../objects/Hero"
 import { lightParticle, redHatHero } from "../../static/images"
 
+@Service()
+export class DemoClass {
+  // @Inject()
+  // public service: SampleService
+  constructor() {}
+
+  hello() {
+    console.log("hello from demo class")
+  }
+}
+
 export class MainScene extends Scene {
   private hero: Hero
 
+  @Inject()
+  public service: DemoClass
+
   constructor() {
     super({ key: "MainScene" })
+
+    this.service.hello()
   }
 
   preload(): void {
