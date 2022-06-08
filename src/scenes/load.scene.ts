@@ -17,7 +17,7 @@ import {
 // use parallax starfield backgrounds
 // move in all directions
 
-export class BootScene extends Scene {
+export class LoadScene extends Scene {
   constructor() {
     super({ key: "BootScene" })
   }

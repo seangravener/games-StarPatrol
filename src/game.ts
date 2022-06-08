@@ -5,16 +5,16 @@ import "../styles/style.css"
 import GameService from "./services/game.service"
 
 export class StarPortal extends Game {
-  constructor(config: Types.Core.GameConfig) {
+  constructor(config: Types.Core.GameConfig = GameConfig) {
     super(config)
   }
 
-  static load() {
-    // bleh. favor DI? Singleton?
-    new GameService(new StarPortal(GameConfig))
+  static start() {
+    return new GameService(new StarPortal()).game
   }
 }
 
 window.addEventListener("load", () => {
-  StarPortal.load()
+  const game = StarPortal.start()
+  console.log(game);
 })

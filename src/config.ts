@@ -1,5 +1,5 @@
 import { Types, AUTO } from "phaser"
-import { MainScene, BootScene, TitleScene } from "./scenes"
+import { MainScene, LoadScene, TitleScene } from "./scenes"
 
 export const GameConfig: Types.Core.GameConfig = {
   title: "Star Portal",
@@ -16,5 +16,5 @@ export const GameConfig: Types.Core.GameConfig = {
       gravity: { y: 200 },
     },
   },
-  scene: [BootScene, TitleScene, MainScene],
+  scene: [LoadScene, TitleScene, MainScene],
 }

@@ -1,5 +1,5 @@
-import { MainScene } from "./MainScene"
-import { BootScene } from "./BootScene"
-import { TitleScene } from "./TitleScene"
+import { MainScene } from "./main.scene"
+import { LoadScene } from "./load.scene"
+import { TitleScene } from "./title.scene"
 
-export { MainScene, BootScene, TitleScene }
+export { MainScene, LoadScene, TitleScene }

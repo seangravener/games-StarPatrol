@@ -1,5 +1,5 @@
-import { SpriteDefinition } from "../interfaces/SpriteDefinition"
-import { Actor } from "./Actor"
+import { SpriteDefinition } from "../interfaces/sprite.interface"
+import { Actor } from "./actor"
 
 export class Hero extends Actor {
   constructor(definition: SpriteDefinition) {

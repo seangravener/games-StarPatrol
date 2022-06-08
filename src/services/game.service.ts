@@ -8,6 +8,10 @@ export default class GameService {
   }
 
   constructor(instance: Game) {
+    this.set(instance)
+  }
+
+  private set(instance: Game) {
     _instance = instance
   }
 

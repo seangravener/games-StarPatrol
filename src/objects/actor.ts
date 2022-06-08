@@ -1,5 +1,5 @@
 import { GameObjects, Physics } from 'phaser'
-import { SpriteDefinition } from '../interfaces/SpriteDefinition'
+import { SpriteDefinition } from '../interfaces/sprite.interface'
 
 export class Actor extends GameObjects.Sprite {
   body: Physics.Arcade.Body
