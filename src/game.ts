@@ -1,18 +1,38 @@
 import "reflect-metadata"
 import { Container, Service } from "typedi"
 
-import GameService from "./services/game.service"
-import "../styles/style.css"
+import { Types, Game } from "phaser"
+import { GameConfig } from "./config"
 
-@Service()
-export class StarPortal {
-  constructor(public service: GameService) {}
+import "../styles/style.css"
+import GameService from "./services/game.service"
+
+export class StarPortal extends Game {
+  constructor(config: Types.Core.GameConfig) {
+    super(config)
+  }
 
   static load() {
-    return Container.get(StarPortal)
+    // bleh. favor DI? Singleton?
+    new GameService(new StarPortal(GameConfig))
   }
 }
 
 window.addEventListener("load", () => {
   StarPortal.load()
 })
+
+@Service()
+class ExampleInjectedService {
+  printMessage() {
+    console.log("hello world!")
+  }
+}
+
+@Service()
+class ExampleService {
+  constructor(public injectedServce: ExampleInjectedService) {}
+}
+
+const serviceInstance = Container.get(ExampleService)
+serviceInstance.injectedServce.printMessage()
