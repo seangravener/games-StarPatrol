@@ -1,7 +1,5 @@
 import type { Game, Input, Types } from "phaser"
 import { Scene, GameObjects } from "phaser"
-import keyboardService from "../services/keyboard.service"
-// import GameService from "../services/game.service"
 
 const SCALE = 2
 export type TileSpriteArgs = [number, number, number, number, string]
