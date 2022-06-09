@@ -1,6 +1,7 @@
 import type { Game, Input, Types } from "phaser"
 import { Scene, GameObjects } from "phaser"
-import GameService from "../services/game.service"
+import keyboardService from "../services/keyboard.service"
+// import GameService from "../services/game.service"
 
 const SCALE = 2
 export type TileSpriteArgs = [number, number, number, number, string]
@@ -23,7 +24,6 @@ export class TitleScene extends Scene {
 
   constructor() {
     super({ key: "TitleScene" })
-    this.game = GameService.load()
   }
 
   init() {
@@ -46,13 +46,15 @@ export class TitleScene extends Scene {
     // this.add.image(100, 100, "startship");
 
     for (const frame of ["01", "02", "03"]) {
-      this.make.image({
-        x: 200 * parseInt(frame),
-        y: 100 * parseInt(frame),
-        key: "starship",
-        frame: `PlayerRed_Frame_${frame}.png`,
-        add: true,
-      }).setOrigin(0)
+      this.make
+        .image({
+          x: 200 * parseInt(frame),
+          y: 100 * parseInt(frame),
+          key: "starship",
+          frame: `PlayerRed_Frame_${frame}.png`,
+          add: true,
+        })
+        .setOrigin(0)
     }
 
     // starship.play("idle")
