@@ -53,7 +53,7 @@ export class LoadScene extends Scene {
       delay: 1000,
       loop: false,
       callback: () => {
-        this.destroy()
+        this.destroyGraphics()
         this.startNextScene()
       },
     })
@@ -69,11 +69,10 @@ export class LoadScene extends Scene {
     })
   }
 
-  destroy() {
+  destroyGraphics() {
     const { progressBar, progressBox, loadingText, percentText } = this.progress
-    const graphics = [progressBar, progressBox, loadingText, percentText]
 
-    for (let graphic of graphics) {
+    for (let graphic of [progressBar, progressBox, loadingText, percentText]) {
       graphic.destroy()
     }
   }
