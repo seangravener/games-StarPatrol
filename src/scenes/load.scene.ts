@@ -1,4 +1,4 @@
-import { Scene } from "phaser"
+import { GameObjects, Scene } from "phaser"
 import { BGBottom, BGTop, lightParticle } from "../../static/images"
 
 import {
@@ -9,7 +9,7 @@ import {
   platform,
   platformMap,
 } from "../../static/sprites"
-import { makeProgressBar } from "../lib/helpers"
+import { makeProgressBar, updateProgressBar } from "../lib/helpers"
 
 // load assets
 // display text or graphic loading animation
@@ -19,6 +19,14 @@ import { makeProgressBar } from "../lib/helpers"
 // move in all directions
 
 export class LoadScene extends Scene {
+  progress: {
+    scene?: Scene
+    progressBox?: GameObjects.Graphics
+    progressBar?: GameObjects.Graphics
+    percentText?: GameObjects.Text
+    loadingText?: GameObjects.Text
+  }
+
   constructor() {
     super({ key: "LoadScene" })
   }
@@ -31,43 +39,27 @@ export class LoadScene extends Scene {
     this.load.atlas("platform", platform, platformMap)
     this.load.atlas("phaser", phaser, phaserMap)
 
-    this.createProgressBar()
+    this.initProgressBar()
   }
 
-  private createProgressBar() {
-    const { progressBar, percentText, loadingText } = makeProgressBar(this)
+  private initProgressBar() {
+    this.progress = makeProgressBar(this)
+    this.load.on("progress", updateProgressBar(this.progress))
+    this.load.on("complete", this.handleLoadComplete.bind(this))
+  }
 
-    this.load.on("progress", function (value: number) {
-      console.log(value)
-      progressBar.clear()
-      progressBar.fillStyle(0xffffff, 1)
-      progressBar.fillRect(250, 280, 300 * value, 30)
-
-      percentText.setText(value * 100 + "%")
-    })
-
-    this.load.on("complete", () => {
-      // assetText.destroy();
-      this.time.addEvent({
-        delay: 1000,
-        loop: false,
-        callback: () => {
-          progressBar.destroy()
-          // progressBox.destroy()
-          loadingText.destroy()
-          percentText.destroy()
-
-          this.scene.start("TitleScene")
-        },
-      })
+  handleLoadComplete() {
+    this.time.addEvent({
+      delay: 1000,
+      loop: false,
+      callback: () => {
+        this.destroy()
+        this.startNextScene()
+      },
     })
   }
 
   create() {
-    // create bg sprite
-    // this.add.sprite(20, 20, "bg:1")
-    // this.add.sprite(200, 200, "player")
-
     this.anims.generateFrameNames("PlayerGreen_Frame_01.png", {
       start: 0,
       end: 5,
@@ -75,5 +67,18 @@ export class LoadScene extends Scene {
       prefix: "string prefix",
       suffix: ".png",
     })
+  }
+
+  destroy() {
+    const { progressBar, progressBox, loadingText, percentText } = this.progress
+    const graphics = [progressBar, progressBox, loadingText, percentText]
+
+    for (let graphic of graphics) {
+      graphic.destroy()
+    }
+  }
+
+  startNextScene() {
+    this.scene.start("TitleScene")
   }
 }
