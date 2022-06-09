@@ -9,23 +9,21 @@ import {
   platform,
   platformMap,
 } from "../../static/sprites"
-import { makeProgressBar, updateProgressBar } from "../lib/helpers"
+import { makeProgressBar } from "../lib/helpers"
 
-// load assets
-// display text or graphic loading animation
-// load main scene when assets finished
+type Text = GameObjects.Text
+type Graphics = GameObjects.Graphics
 
-// use parallax starfield backgrounds
-// move in all directions
+type updateBarParams = {
+  scene?: Scene
+  box?: Graphics
+  bar?: Graphics
+  text?: Text
+  loadingText?: Text
+}
 
 export class LoadScene extends Scene {
-  progress: {
-    scene?: Scene
-    progressBox?: GameObjects.Graphics
-    progressBar?: GameObjects.Graphics
-    percentText?: GameObjects.Text
-    loadingText?: GameObjects.Text
-  }
+  progress: updateBarParams
 
   constructor() {
     super({ key: "LoadScene" })
@@ -35,7 +33,7 @@ export class LoadScene extends Scene {
     this.load.image("bg:bottom", BGBottom)
     this.load.image("bg:top", BGTop)
 
-    this.load.atlas("starship", starship, starshipMap)
+    this.load.atlas("heroship", starship, starshipMap)
     this.load.atlas("platform", platform, platformMap)
     this.load.atlas("phaser", phaser, phaserMap)
 
@@ -44,11 +42,21 @@ export class LoadScene extends Scene {
 
   private initProgressBar() {
     this.progress = makeProgressBar(this)
-    this.load.on("progress", updateProgressBar(this.progress))
+    this.load.on("progress", this.handleLoadProgress.bind(this))
     this.load.on("complete", this.handleLoadComplete.bind(this))
   }
 
-  handleLoadComplete() {
+  private handleLoadProgress(value: number) {
+    const { bar, text } = this.progress
+
+    text.setText(value * 100 + "%")
+    bar
+      .clear()
+      .fillStyle(0xffffff, 1)
+      .fillRect(250, 280, 300 * value, 30)
+  }
+
+  private handleLoadComplete() {
     this.time.addEvent({
       delay: 1000,
       loop: false,
@@ -59,20 +67,12 @@ export class LoadScene extends Scene {
     })
   }
 
-  create() {
-    this.anims.generateFrameNames("PlayerGreen_Frame_01.png", {
-      start: 0,
-      end: 5,
-      zeroPad: 3,
-      prefix: "string prefix",
-      suffix: ".png",
-    })
-  }
+  create() {}
 
   destroyGraphics() {
-    const { progressBar, progressBox, loadingText, percentText } = this.progress
+    const { bar, box, loadingText, text } = this.progress
 
-    for (let graphic of [progressBar, progressBox, loadingText, percentText]) {
+    for (let graphic of [bar, box, loadingText, text]) {
       graphic.destroy()
     }
   }

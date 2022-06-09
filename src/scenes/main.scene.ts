@@ -1,9 +1,9 @@
 import { Scene } from "phaser"
-import { Hero } from "../objects/actor.hero"
+import { PlayerShip } from "../objects/HeroShipSprite"
 import { lightParticle, redHatHero } from "../../static/images"
 
 export class MainScene extends Scene {
-  private hero: Hero
+  private hero: PlayerShip
 
   constructor() {
     super({ key: "MainScene" })
@@ -23,12 +23,12 @@ export class MainScene extends Scene {
       blendMode: "ADD",
     })
 
-    this.hero = new Hero({
-      scene: this,
-      x: 400,
-      y: 300,
-      texture: "redHatHero",
-    })
+    // this.hero = new HeroShip({
+    //   scene: this,
+    //   x: 400,
+    //   y: 300,
+    //   texture: "redHatHero",
+    // })
 
     emitter.startFollow(this.hero)
   }

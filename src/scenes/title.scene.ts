@@ -1,5 +1,6 @@
 import type { Game, Input, Types } from "phaser"
 import { Scene, GameObjects } from "phaser"
+import { PlayerShip } from "../objects/HeroShipSprite"
 
 const SCALE = 2
 export type TileSpriteArgs = [number, number, number, number, string]
@@ -14,7 +15,7 @@ const getStarshipFrames = (scene: Scene) =>
   })
 
 export class TitleScene extends Scene {
-  game: Game
+  heroShip: PlayerShip
   canvas: HTMLCanvasElement
   bgTop: GameObjects.TileSprite
   bgBottom: GameObjects.TileSprite
@@ -34,7 +35,7 @@ export class TitleScene extends Scene {
     this.createText()
 
     this.anims.create({
-      key: "idle",
+      key: "heroship:idle",
       frames: getStarshipFrames(this),
       frameRate: 8,
       repeat: 2,
@@ -43,19 +44,25 @@ export class TitleScene extends Scene {
     // const starship = this.add.sprite(100, 300, "starship")
     // this.add.image(100, 100, "startship");
 
-    for (const frame of ["01", "02", "03"]) {
-      this.make
-        .image({
-          x: 200 * parseInt(frame),
-          y: 100 * parseInt(frame),
-          key: "starship",
-          frame: `PlayerRed_Frame_${frame}.png`,
-          add: true,
-        })
-        .setOrigin(0)
-    }
+    // for (const frame of ["01", "02", "03"]) {
+    //   this.make
+    //     .image({
+    //       x: 200 * parseInt(frame),
+    //       y: 100 * parseInt(frame),
+    //       key: "starship",
+    //       frame: `PlayerRed_Frame_${frame}.png`,
+    //       add: true,
+    //     })
+    //     .setOrigin(0)
+    // }
 
     // starship.play("idle")
+    this.addHeroShip()
+  }
+
+  addHeroShip() {
+    const hero = new PlayerShip(this, 0, 0)
+    // hero.play("heroship:idle")
   }
 
   update() {
