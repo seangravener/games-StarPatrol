@@ -1,5 +1,5 @@
 import { GameObjects, Scene } from "phaser"
-import { BGBottom, BGTop, lightParticle } from "../../static/images"
+import { BGBottom, BGTop, lightParticle } from "../assets/images"
 
 import {
   starshipMap,
@@ -8,7 +8,7 @@ import {
   phaserMap,
   platform,
   platformMap,
-} from "../../static/sprites"
+} from "../assets/sprites"
 import { makeProgressBar } from "../lib/helpers"
 
 type Text = GameObjects.Text

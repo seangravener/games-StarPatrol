@@ -1,6 +1,6 @@
 import { Scene } from "phaser"
 import { PlayerShip } from "../objects/HeroShipSprite"
-import { lightParticle, redHatHero } from "../../static/images"
+import { lightParticle, redHatHero } from "../assets/images"
 
 export class MainScene extends Scene {
   private hero: PlayerShip
