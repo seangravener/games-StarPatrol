@@ -1,11 +1,11 @@
 import { Types, Scene } from "phaser"
-import { SpriteDefinition } from "../interfaces/sprite.interface"
-import { PlayerSprite } from "./ShipSprite"
+import { SpriteDefinition } from "../Interfaces/sprite.interface"
+import { BaseShipSprite } from "./BaseShip.sprite"
 
 const getStarshipFrames = (scene: Scene) =>
   scene.anims.generateFrameNames("heroship:idle")
 
-export class PlayerShip extends PlayerSprite {
+export class PlayerShip extends BaseShipSprite {
   constructor(scene: Scene, x: number, y: number) {
     super({ scene, x, y, texture: "starship" })
     

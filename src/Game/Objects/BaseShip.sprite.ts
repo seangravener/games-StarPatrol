@@ -1,7 +1,7 @@
 import { GameObjects, Physics, Scene } from "phaser"
-import { SpriteDefinition } from "../interfaces/sprite.interface"
+import { SpriteDefinition } from "../Interfaces/sprite.interface"
 
-export class PlayerSprite extends GameObjects.Sprite {
+export class BaseShipSprite extends GameObjects.Sprite {
   body: Physics.Arcade.Body
   scene: Scene
 

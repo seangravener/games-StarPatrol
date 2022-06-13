@@ -1,5 +1,5 @@
 import { Types, AUTO } from "phaser"
-import { MainScene, LoadScene, TitleScene } from "./scenes"
+import { MainScene, LoadScene, TitleScene } from "./Scenes"
 
 export const GameConfig: Types.Core.GameConfig = {
   title: "Star Portal",

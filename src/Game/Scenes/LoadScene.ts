@@ -1,15 +1,15 @@
 import { GameObjects, Scene } from "phaser"
-import { BGBottom, BGTop, lightParticle } from "../assets/images"
+import { BGBottom, BGTop, lightParticle } from "../../assets/images"
 
 import {
-  starshipMap,
-  starship,
-  phaser,
-  phaserMap,
-  platform,
-  platformMap,
-} from "../assets/sprites"
-import { makeProgressBar } from "../lib/helpers"
+  heroship_json,
+  heroship_png,
+  phaser_png,
+  phaser_json,
+  platform_png,
+  platform_json,
+} from "../../assets/sprites"
+import { makeProgressBar } from "../../lib/helpers"
 
 type Text = GameObjects.Text
 type Graphics = GameObjects.Graphics
@@ -33,9 +33,9 @@ export class LoadScene extends Scene {
     this.load.image("bg:bottom", BGBottom)
     this.load.image("bg:top", BGTop)
 
-    this.load.atlas("heroship", starship, starshipMap)
-    this.load.atlas("platform", platform, platformMap)
-    this.load.atlas("phaser", phaser, phaserMap)
+    this.load.atlas("heroship", heroship_png, heroship_json)
+    this.load.atlas("platform", platform_png, platform_json)
+    this.load.atlas("phaser", phaser_png, phaser_json)
 
     this.initProgressBar()
   }

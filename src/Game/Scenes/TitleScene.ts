@@ -1,6 +1,6 @@
 import type { Game, Input, Types } from "phaser"
 import { Scene, GameObjects } from "phaser"
-import { PlayerShip } from "../objects/HeroShipSprite"
+import { PlayerShip } from "../Objects/HeroShip.sprite"
 
 const SCALE = 2
 export type TileSpriteArgs = [number, number, number, number, string]
@@ -61,7 +61,7 @@ export class TitleScene extends Scene {
   }
 
   addHeroShip() {
-    const hero = new PlayerShip(this, 0, 0)
+    // const hero = new PlayerShip(this, 0, 0)
     // hero.play("heroship:idle")
   }
 

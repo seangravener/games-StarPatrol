@@ -5,7 +5,7 @@ const BundleAnalyzerPlugin =
   require("webpack-bundle-analyzer").BundleAnalyzerPlugin
 
 const config = {
-  entry: "./src/game.ts",
+  entry: "./src/main.ts",
   output: {
     path: path.resolve(__dirname, "dist"),
     filename: "[name].[contenthash].js",
@@ -16,10 +16,7 @@ const config = {
       { test: /\.css$/, use: ["style-loader", "css-loader"] },
       { test: /\.ts(x)?$/, loader: "ts-loader", exclude: /node_modules/ },
       { test: /\.scss$/, use: ["style-loader", "css-loader", "sass-loader"] },
-      {
-        test: /\.(png|svg)$/,
-        type: "asset/resource",
-      },
+      { test: /\.(png|svg)$/, type: "asset/resource" },
     ],
   },
   plugins: [
