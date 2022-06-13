@@ -33,7 +33,7 @@ export class LoadScene extends Scene {
     this.load.image("bg:bottom", BGBottom)
     this.load.image("bg:top", BGTop)
 
-    this.load.atlas("heroship", heroship_png, heroship_json)
+    this.load.atlas("heroship:idle", heroship_png, heroship_json)
     this.load.atlas("platform", platform_png, platform_json)
     this.load.atlas("phaser", phaser_png, phaser_json)
 

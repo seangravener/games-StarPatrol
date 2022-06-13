@@ -1,12 +1,12 @@
 import type { Game, Input, Types } from "phaser"
 import { Scene, GameObjects } from "phaser"
-import { PlayerShip } from "../Objects/HeroShip.sprite"
+import { HeroShip } from "../Objects/HeroShip.sprite"
 
 const SCALE = 2
-export type TileSpriteArgs = [number, number, number, number, string]
+export type TileSpriteParams = [number, number, number, number, string]
 
 const getStarshipFrames = (scene: Scene) =>
-  scene.anims.generateFrameNames("starship", {
+  scene.anims.generateFrameNames("heroship:idle", {
     start: 0,
     end: 3,
     zeroPad: 2,
@@ -15,7 +15,7 @@ const getStarshipFrames = (scene: Scene) =>
   })
 
 export class TitleScene extends Scene {
-  heroShip: PlayerShip
+  heroShip: HeroShip
   canvas: HTMLCanvasElement
   bgTop: GameObjects.TileSprite
   bgBottom: GameObjects.TileSprite
@@ -34,35 +34,12 @@ export class TitleScene extends Scene {
     this.createBackground()
     this.createText()
 
-    this.anims.create({
-      key: "heroship:idle",
-      frames: getStarshipFrames(this),
-      frameRate: 8,
-      repeat: 2,
-    })
-
-    // const starship = this.add.sprite(100, 300, "starship")
-    // this.add.image(100, 100, "startship");
-
-    // for (const frame of ["01", "02", "03"]) {
-    //   this.make
-    //     .image({
-    //       x: 200 * parseInt(frame),
-    //       y: 100 * parseInt(frame),
-    //       key: "starship",
-    //       frame: `PlayerRed_Frame_${frame}.png`,
-    //       add: true,
-    //     })
-    //     .setOrigin(0)
-    // }
-
-    // starship.play("idle")
     this.addHeroShip()
   }
 
   addHeroShip() {
-    // const hero = new PlayerShip(this, 0, 0)
-    // hero.play("heroship:idle")
+    this.heroShip = new HeroShip(this, 0, 0)
+    this.heroShip.play("heroship:idle")
   }
 
   update() {
@@ -86,10 +63,10 @@ export class TitleScene extends Scene {
       height: this.scale.height * SCALE,
     }
 
-    const bgBottomArgs: TileSpriteArgs = [0, 0, width, height, "bg:bottom"]
+    const bgBottomArgs: TileSpriteParams = [0, 0, width, height, "bg:bottom"]
     this.bgBottom = this.add.tileSprite(...bgBottomArgs).toggleFlipY()
 
-    const bgTopArgs: TileSpriteArgs = [0, 0, width, height, "bg:top"]
+    const bgTopArgs: TileSpriteParams = [0, 0, width, height, "bg:top"]
     this.bgTop = this.add.tileSprite(...bgTopArgs).toggleFlipY()
     this.bgTop.alpha = 0.5
   }

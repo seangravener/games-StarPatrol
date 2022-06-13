@@ -1,9 +1,9 @@
 import { Scene } from "phaser"
-import { PlayerShip } from "../Objects/HeroShip.sprite"
+import { HeroShip } from "../Objects/HeroShip.sprite"
 import { lightParticle, redHatHero } from "../../assets/images"
 
 export class MainScene extends Scene {
-  private hero: PlayerShip
+  private hero: HeroShip
 
   constructor() {
     super({ key: "MainScene" })
