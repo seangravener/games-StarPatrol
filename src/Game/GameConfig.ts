@@ -3,12 +3,13 @@ import { MainScene, LoadScene, TitleScene } from "./Scenes"
 
 export const GameConfig: Types.Core.GameConfig = {
   title: "Star Portal",
+  pixelArt: true,
+  type: AUTO,
   url: "",
   version: "0.1",
   width: 800,
-  height: 600,
+  height: 480,
   backgroundColor: 0x3a404d,
-  type: AUTO,
   parent: "game",
   physics: {
     default: "arcade",
