@@ -1,5 +1,6 @@
 import { Scene } from "phaser"
 
+ // @todo calculate position
 const makeProgressBar = (scene: Scene) => {
   const { width, height } = scene.cameras.main,
     bar = scene.add.graphics(),

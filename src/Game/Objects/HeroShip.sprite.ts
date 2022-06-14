@@ -1,5 +1,4 @@
 import { Types, Scene } from "phaser"
-import { SpriteDefinition } from "../Interfaces/sprite.interface"
 import { BaseShipSprite } from "./BaseShip.sprite"
 
 const getStarshipFrames = (scene: BaseShipSprite) =>
@@ -12,12 +11,37 @@ const getStarshipFrames = (scene: BaseShipSprite) =>
   })
 
 export class HeroShip extends BaseShipSprite {
+  cursorKeys: Types.Input.Keyboard.CursorKeys
+
   constructor(scene: Scene, x: number, y: number) {
     super({ scene, x, y, texture: "heroship:idle" })
 
     this.initPhysics()
     this.initSprite()
+    this.initKeyboard()
+
     this.scene.add.existing(this)
+    this.scene.physics.add.existing(this)
+  }
+
+  preUpdate(time: number, delta: number): void {
+    super.preUpdate(time, delta)
+
+    if (this.cursorKeys.left.isDown) {
+      console.log("left key")
+    }
+
+    if (this.cursorKeys.right.isDown) {
+      console.log("right key")
+    }
+
+    if (this.cursorKeys.up.isDown) {
+      console.log("up key")
+    }
+
+    if (this.cursorKeys.down.isDown) {
+      console.log("down key")
+    }
   }
 
   create() {
@@ -25,6 +49,10 @@ export class HeroShip extends BaseShipSprite {
     //   key: "heroship:idle",
     //   frames: getStarshipFrames(this.scene),
     // })
+  }
+
+  private initKeyboard() {
+    this.cursorKeys = this.scene.input.keyboard.createCursorKeys()
   }
 
   private initSprite() {

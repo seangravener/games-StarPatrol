@@ -19,7 +19,6 @@ export class TitleScene extends Scene {
   canvas: HTMLCanvasElement
   bgTop: GameObjects.TileSprite
   bgBottom: GameObjects.TileSprite
-  cursorKeys: Types.Input.Keyboard.CursorKeys
 
   constructor() {
     super({ key: "TitleScene" })
@@ -27,13 +26,11 @@ export class TitleScene extends Scene {
 
   init() {
     this.canvas = this.sys.game.canvas
-    this.cursorKeys = this.input.keyboard.createCursorKeys()
   }
 
   create() {
     this.createBackground()
     this.createText()
-
     this.addHeroShip()
   }
 
