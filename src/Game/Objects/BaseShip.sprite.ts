@@ -5,15 +5,8 @@ export class BaseShipSprite extends GameObjects.Sprite {
   body: Physics.Arcade.Body
   scene: Scene
 
-  constructor(definition: SpriteDefinition) {
-    super(
-      definition.scene,
-      definition.x,
-      definition.y,
-      definition.texture,
-      definition.frame
-    )
-
-    this.scene = definition.scene
+  constructor({ scene, x, y, texture, frame }: SpriteDefinition) {
+    super(scene, x, y, texture, frame)
+    this.scene = scene
   }
 }
