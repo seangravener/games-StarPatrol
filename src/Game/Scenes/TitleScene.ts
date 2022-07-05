@@ -2,23 +2,16 @@ import type { Game, Input, Types } from "phaser"
 import { Scene, GameObjects } from "phaser"
 import { HeroShip } from "../Objects/HeroShip.sprite"
 
+// @todo 
 const SCALE = 2
 export type TileSpriteParams = [number, number, number, number, string]
 
-const getStarshipFrames = (scene: Scene) =>
-  scene.anims.generateFrameNames("heroship:idle", {
-    start: 0,
-    end: 3,
-    zeroPad: 2,
-    prefix: "PlayerRed_Frame_",
-    suffix: ".png",
-  })
-
 export class TitleScene extends Scene {
-  heroShip: HeroShip
-  canvas: HTMLCanvasElement
   bgTop: GameObjects.TileSprite
   bgBottom: GameObjects.TileSprite
+  canvas: HTMLCanvasElement
+  cursorKeys: Types.Input.Keyboard.CursorKeys
+  heroShip: HeroShip
 
   constructor() {
     super({ key: "TitleScene" })
@@ -26,6 +19,7 @@ export class TitleScene extends Scene {
 
   init() {
     this.canvas = this.sys.game.canvas
+    this.cursorKeys = this.input.keyboard.createCursorKeys()
   }
 
   create() {
